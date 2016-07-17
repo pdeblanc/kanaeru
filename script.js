@@ -16,7 +16,43 @@ function to_prefix_tree(rules) {
   return tree;
 }
 
-var rules = [["a", "あ"], ["i", "い"], ["ra", "ら"], ["ri", "り"], ["chi", "ち"], ["te", "て"]];
+var vowels = [["a", "あ"], ["i", "い"], ["u", "う"], ["e", "え"], ["o", "お"]];
+var cons_k = [["ka", "か"], ["ki", "き"], ["ku", "く"], ["ke", "け"], ["ko", "こ"]];
+var cons_g = [["ga", "が"], ["gi", "ぎ"], ["gu", "ぐ"], ["ge", "げ"], ["go", "ご"]];
+var cons_s = [["sa", "さ"], ["si", "し"], ["su", "す"], ["se", "せ"], ["so", "そ"]];
+var cons_z = [["za", "ざ"], ["zi", "じ"], ["zu", "ず"], ["ze", "ぜ"], ["zo", "ぞ"]];
+var cons_t = [["ta", "た"], ["ti", "ち"], ["tu", "つ"], ["te", "て"], ["to", "と"]];
+var cons_d = [["da", "だ"], ["di", "ぢ"], ["du", "づ"], ["de", "で"], ["do", "ど"]];
+var cons_n = [["na", "な"], ["ni", "に"], ["nu", "ぬ"], ["ne", "ね"], ["no", "の"]];
+var cons_h = [["ha", "は"], ["hi", "ひ"], ["hu", "ふ"], ["he", "へ"], ["ho", "ほ"]];
+var cons_b = [["ba", "ば"], ["bi", "び"], ["bu", "ぶ"], ["be", "べ"], ["bo", "ぼ"]];
+var cons_p = [["pa", "ぱ"], ["pi", "ぴ"], ["pu", "ぷ"], ["pe", "ぺ"], ["po", "ぽ"]];
+var cons_m = [["ma", "ま"], ["mi", "み"], ["mu", "む"], ["me", "め"], ["mo", "も"]];
+var cons_y = [["ya", "や"], ["yu", "ゆ"], ["yo", "よ"]];
+var cons_r = [["ra", "ら"], ["ri", "り"], ["ru", "る"], ["re", "れ"], ["ro", "ろ"]];
+var cons_w = [["wa", "わ"], ["wi", "ゐ"], ["we", "ゑ"], ["wo", "を"]];
+var cons_v = [["vu", "ゔ"]];
+var semivowel_n = [["n", "ん"]];
+
+var rules = [].concat(
+  vowels,
+  cons_k,
+  cons_g,
+  cons_s,
+  cons_z,
+  cons_t,
+  cons_d,
+  cons_n,
+  cons_h,
+  cons_b,
+  cons_p,
+  cons_m,
+  cons_y,
+  cons_r,
+  cons_w,
+  cons_v,
+  semivowel_n
+);
 var prefix_tree = to_prefix_tree(rules);
 
 function deromanize(string) {
