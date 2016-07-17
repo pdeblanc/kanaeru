@@ -1,0 +1,16 @@
+{
+  "name": "Kana-izer",
+  "description": "Transliterate romaji to hiragana.",
+  "version": "2.0",
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "Kana-ize"
+  },
+  "manifest_version": 2
+}
