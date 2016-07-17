@@ -70,24 +70,36 @@ function deromanize(string) {
       }
     }
     if (value) {
-      tokens.push(value);
+      var span = document.createElement('span');
+      span.textContent = value;
+      span.style = "font-size: 70%; margin: -0.5px;";
+      tokens.push(span);
       start += key_length;
     }
     else {
-      tokens.push(string[start]);
+      var text_node = document.createTextNode(string[start]);
+      tokens.push(text_node);
       start++;
     }
   }
-  return tokens.join("");
+  return tokens;
 }
 
 function replace_text(node) {
-  if (node.nodeType == Node.TEXT_NODE) {
-    node.nodeValue = deromanize(node.nodeValue);
-  }
-  else {
-    for (var child = node.firstChild; child; child = child.nextSibling) {
+  var child = node.firstChild;
+  while (child) {
+    if (child.nodeType == Node.TEXT_NODE) {
+      var prev = child;
+      child = child.nextSibling;
+      node.removeChild(prev);
+      var tokens = deromanize(prev.nodeValue);
+      for (var i = 0; i < tokens.length; i++) {
+        node.insertBefore(tokens[i], child);
+      }
+    }
+    else {
       replace_text(child);
+      child = child.nextSibling;
     }
   }
 }
